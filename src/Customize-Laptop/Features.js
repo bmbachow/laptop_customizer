@@ -10,6 +10,8 @@ class Features extends React.Component {
   });
 
 render(){
+  console.log(this.props.selected)
+  console.log(this.props)
   return (
   <div key={this.props.itemHash} className="feature__item">
     <input
@@ -18,7 +20,7 @@ render(){
       className="feature__option"
       name={slugify(this.props.feature)}
       checked={this.props.itemName === this.props.selected[this.props.feature].name}
-      onChange={e => this.props.updateFeature(this.props.feature, this.props.item)}
+      onClick={e => this.props.updateFeature(this.props.feature, this.props.item)}
     />
     <label htmlFor={this.props.itemHash} className="feature__label">
       {this.props.itemName} ({this.USCurrencyFormat.format(this.props.cost)})

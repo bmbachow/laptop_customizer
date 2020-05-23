@@ -8,6 +8,7 @@ total = Object.keys(this.props.selected).reduce(
 );
 
 render(){
+  console.log(this.props.selected)
   return(
     <div className="summary__option" key={this.props.featureHash}>
       <div className="summary__option__label">{this.props.feature} </div>

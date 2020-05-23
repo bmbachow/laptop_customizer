@@ -5,8 +5,6 @@ import Cart from './Cart/Cart';
 // in both URLs and html attributes
 import './App.css';
 
-// This object will allow us to
-// easily convert numbers into US dollar values
 
 
 class App extends Component {
@@ -44,7 +42,9 @@ class App extends Component {
     });
   };
 
-  features =  Object.keys(this.props.features).map((feature, idx) => {
+  features = () => { 
+    console.log(this.props.features)
+   return Object.keys(this.props.features).map((feature, idx) => {
     const featureHash = feature + '-' + idx;
     return(
     <CustomizeLaptop
@@ -55,8 +55,10 @@ class App extends Component {
       selected = {this.state.selected}
     />)
   });
+  }
 
-  summary = Object.keys(this.state.selected).map((feature, idx) => {
+  summary = () => { 
+   return  Object.keys(this.state.selected).map((feature, idx) => {
       const featureHash = feature + '-' + idx;
       const selectedOption = this.state.selected[feature];
       return(
@@ -70,13 +72,19 @@ class App extends Component {
         />
       )
   });
+}
 
-    total = Object.keys(this.state.selected).reduce(
+
+    total = () => { 
+      return Object.keys(this.state.selected).reduce(
       (acc, curr) => acc + this.state.selected[curr].cost,
       0
     );
+    }
 
   render(){
+
+    console.log(this.state)
     return (
       <div className="App">
         <header>
@@ -85,15 +93,15 @@ class App extends Component {
         <main>
           <form className="main__form">
             <h2>Customize your laptop</h2>
-            {this.features}
+            {this.features()}
           </form>
           <section className="main__summary">
             <h2>Your cart</h2>
-            {this.summary}
+            {this.summary()}
             <div className="summary__total">
               <div className="summary__total__label">Total</div>
               <div className="summary__total__value">
-                {this.USCurrencyFormat.format(this.total)}
+                {this.USCurrencyFormat.format(this.total())}
               </div>
             </div>
           </section>

@@ -3,8 +3,11 @@ import Features from '../Customize-Laptop/Features';
 import slugify from 'slugify';
 
 class CustomizeLaptop extends React.Component{
-  
-     options = this.props.FEATURES[this.props.featureName].map(item => {
+  constructor(props) { super(props) }
+     options = () => {
+       console.log(this.props)
+       console.log(this.props.featureName);
+      return this.props.FEATURES[this.props.featureName].map(item => {
            const itemHash = slugify(JSON.stringify(item));
       return(
        <Features 
@@ -18,14 +21,15 @@ class CustomizeLaptop extends React.Component{
        />)
       } 
      )  
-     
+    }
+
   render(){
     return (
     <fieldset className="feature" key={this.props.featureHash}>
       <legend className="feature__name">
         <h3>{this.props.featureName}</h3>
       </legend>
-      {this.options}
+      {this.options()}
     </fieldset>
   
 );
